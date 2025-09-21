@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', sans-serif;
         }
@@ -127,7 +130,7 @@
             } else {
                 headerContent = `
                     <div class="mb-4">
-                        <button onclick="displayToolOfTheDay()" class="text-emerald-400 hover:text-emerald-300 font-semibold">&larr; Voltar à Ferramenta do Dia</button>
+                        <button onclick="displayToolOfTheDay(true)" class="text-emerald-400 hover:text-emerald-300 font-semibold">&larr; Voltar à Ferramenta do Dia</button>
                     </div>`;
             }
 
@@ -160,9 +163,12 @@
         }
 
         // Função para mostrar a ferramenta do dia
-        function displayToolOfTheDay() {
+        function displayToolOfTheDay(shouldScroll = false) {
             if (toolOfTheDay) {
                 renderTool(toolOfTheDay, true);
+                if(shouldScroll) {
+                    toolContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             } else {
                 toolContainer.innerHTML = `
                 <div class="bg-gray-800 rounded-2xl p-6 md:p-8 text-center">
@@ -177,6 +183,7 @@
             const tool = toolsDatabase.find(t => t.publishDate === publishDate);
             if (tool) {
                 renderTool(tool, false);
+                toolContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
