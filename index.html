@@ -41,9 +41,9 @@
             <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">A sua dose diária de superpoderes de IA, explicada em menos de 60 segundos.</p>
         </header>
 
-        <!-- Ferramenta do Dia (Será preenchida por JavaScript) -->
-        <main id="tool-of-the-day-container">
-            <!-- O conteúdo da ferramenta do dia será inserido aqui -->
+        <!-- Ferramenta em Destaque (Será preenchida por JavaScript) -->
+        <main id="tool-display-container">
+            <!-- O conteúdo da ferramenta selecionada será inserido aqui -->
         </main>
         
         <!-- ESPAÇO PARA PUBLICIDADE 1 (Banner Principal) -->
@@ -56,7 +56,6 @@
             <h3 class="text-2xl font-bold text-center mb-8">Ferramentas Anteriores</h3>
             <div id="archive-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Os itens de arquivo serão inseridos aqui -->
-                <!-- O espaço publicitário será inserido dinamicamente -->
             </div>
         </section>
 
@@ -69,10 +68,9 @@
 
     <script>
         // --- O CÉREBRO DE CONTEÚDO ---
-        // Adicione as suas ferramentas aqui. O formato da data é ANO-MÊS-DIA.
-        const toolsDatabase = [			
-			{
-                publishDate: '2025-09-21',
+        const toolsDatabase = [
+            {
+                publishDate: '2025-09-18',
                 name: 'Tome.app',
                 description: 'Cria storytelling e narrativas visuais interativas com IA.',
                 useCase: 'Para quem quer ir além de slides e criar apresentações que contam uma história.',
@@ -81,7 +79,7 @@
                 logoUrl: 'https://placehold.co/120x120/101827/c084fc?text=Tome'
             },
             {
-                publishDate: '2025-09-17',
+                publishDate: '2025-09-19',
                 name: 'Gamma AI',
                 description: 'Cria apresentações de slides profissionais em segundos a partir de um simples comando de texto.',
                 useCase: 'Ideal para estudantes, marketers e profissionais que precisam de criar apresentações rapidamente.',
@@ -90,7 +88,7 @@
                 logoUrl: 'https://placehold.co/120x120/101827/34d399?text=Gamma'
             },
             {
-                publishDate: '2025-09-18', // A data de "hoje" para este exemplo
+                publishDate: '2025-09-20',
                 name: 'Veed.io',
                 description: 'Um editor de vídeo online completo que usa IA para legendar, remover fundo e muito mais.',
                 useCase: 'Perfeito para criadores de conteúdo, gestores de redes sociais e equipas de marketing.',
@@ -98,109 +96,115 @@
                 link: 'https://www.veed.io/',
                 logoUrl: 'https://placehold.co/120x120/101827/60a5fa?text=Veed'
             },
-			{
-                publishDate: '2025-09-19', // A data de "hoje" para este exemplo
+            {
+                publishDate: '2025-09-21', // Data de "hoje" para este exemplo
                 name: 'Google Gemini',
                 description: 'Um assistente de IA multimodal e conversacional da Google, capaz de entender texto, imagens, áudio e código.',
                 useCase: 'Perfeito para pesquisa, brainstorming, criação de conteúdo, resumo de informações e ajuda com programação.',
                 howToStart: 'Aceda ao site, inicie uma conversa com o seu pedido (prompt) e explore as suas capacidades multimodais.',
-                link: 'https://gemini.google.com/', // <-- Substitua pelo seu link de afiliado aqui, se tiver um.
+                link: 'https://gemini.google.com/',
                 logoUrl: 'https://placehold.co/120x120/101827/4285F4?text=Gemini'
-            },
-            {
-                publishDate: '2025-09-20', // Ferramenta agendada para amanhã
-                name: 'Looka AI',
-                description: 'Gera logótipos únicos e bonitos e cria uma identidade visual completa para a sua marca.',
-                useCase: 'Essencial para startups, pequenos negócios e empreendedores a solo que precisam de uma marca profissional.',
-                howToStart: 'Insira o nome da sua empresa e algumas preferências de estilo, e a IA cria dezenas de opções de logótipo.',
-                link: 'https://looka.com/',
-                logoUrl: 'https://placehold.co/120x120/101827/f87171?text=Looka'
             }
-            // Adicione aqui quantas ferramentas quiser para o futuro...
         ];
         
         // --- O MOTOR DE AUTOMAÇÃO ---
-        window.onload = function() {
-            // Obtém a data de hoje no formato YYYY-MM-DD
-            const today = new Date();
-            const todayString = today.toISOString().split('T')[0];
+        let toolOfTheDay = null;
+        const toolContainer = document.getElementById('tool-display-container');
+        const archiveGrid = document.getElementById('archive-grid');
 
-            // Encontra a ferramenta de hoje e as ferramentas do arquivo
-            const toolOfTheDay = toolsDatabase.find(tool => tool.publishDate === todayString);
-            const archiveTools = toolsDatabase
-                .filter(tool => tool.publishDate < todayString)
-                .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate)); // Ordena as mais recentes primeiro
-
-            const toolContainer = document.getElementById('tool-of-the-day-container');
-            const archiveGrid = document.getElementById('archive-grid');
-
-            // Renderiza a Ferramenta do Dia
-            if (toolOfTheDay) {
-                const formattedDate = today.toLocaleDateString('pt-pt', { day: 'numeric', month: 'long', year: 'numeric' });
-                toolContainer.innerHTML = `
-                    <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-700">
-                        <div class="flex items-center mb-4">
-                            <span class="bg-emerald-500 text-gray-900 text-xs font-bold mr-3 px-3 py-1 rounded-full uppercase">Ferramenta do Dia</span>
-                            <span class="text-sm text-gray-500">${formattedDate}</span>
-                        </div>
-                        <div class="md:flex md:items-center md:space-x-8">
-                            <div class="flex-shrink-0 mb-6 md:mb-0">
-                                <img src="${toolOfTheDay.logoUrl}" alt="Logo da ${toolOfTheDay.name}" class="rounded-lg w-24 h-24 md:w-32 md:h-32 mx-auto">
-                            </div>
-                            <div>
-                                <h2 class="text-3xl font-bold text-white mb-2">${toolOfTheDay.name}</h2>
-                                <p class="text-gray-300 mb-4">${toolOfTheDay.description}</p>
-                                <div class="space-y-3 mb-5">
-                                    <div class="flex items-start">
-                                        <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</span>
-                                        <p><strong class="text-white">Para que serve:</strong> ${toolOfTheDay.useCase}</p>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</span>
-                                        <p><strong class="text-white">Como começar:</strong> ${toolOfTheDay.howToStart}</p>
-                                    </div>
-                                </div>
-                                <a href="${toolOfTheDay.link}" target="_blank" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-transform duration-200 hover:scale-105 w-full text-center sm:w-auto">
-                                    Experimentar a Ferramenta &rarr;
-                                </a>
-                            </div>
-                        </div>
+        // Função para renderizar os detalhes de uma ferramenta no container principal
+        function renderTool(tool, isMainTool) {
+            const date = new Date(tool.publishDate + 'T12:00:00Z');
+            const formattedDate = date.toLocaleDateString('pt-pt', { day: 'numeric', month: 'long', year: 'numeric' });
+            
+            let headerContent = '';
+            if (isMainTool) {
+                headerContent = `
+                    <div class="flex items-center mb-4">
+                        <span class="bg-emerald-500 text-gray-900 text-xs font-bold mr-3 px-3 py-1 rounded-full uppercase">Ferramenta do Dia</span>
+                        <span class="text-sm text-gray-500">${formattedDate}</span>
                     </div>`;
             } else {
-                 toolContainer.innerHTML = `
-                    <div class="bg-gray-800 rounded-2xl p-6 md:p-8 text-center">
-                        <h2 class="text-2xl font-bold text-white">Nenhuma ferramenta agendada para hoje.</h2>
-                        <p class="text-gray-400">Volte amanhã para descobrir mais uma incrível ferramenta de IA!</p>
+                headerContent = `
+                    <div class="mb-4">
+                        <button onclick="displayToolOfTheDay()" class="text-emerald-400 hover:text-emerald-300 font-semibold">&larr; Voltar à Ferramenta do Dia</button>
                     </div>`;
             }
 
-            // Renderiza o Arquivo
-            archiveGrid.innerHTML = ''; // Limpa o grid antes de adicionar os itens
+            toolContainer.innerHTML = `
+                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-700">
+                    ${headerContent}
+                    <div class="md:flex md:items-center md:space-x-8">
+                        <div class="flex-shrink-0 mb-6 md:mb-0">
+                            <img src="${tool.logoUrl}" alt="Logo da ${tool.name}" class="rounded-lg w-24 h-24 md:w-32 md:h-32 mx-auto">
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-white mb-2">${tool.name}</h2>
+                            <p class="text-gray-300 mb-4">${tool.description}</p>
+                            <div class="space-y-3 mb-5">
+                                <div class="flex items-start">
+                                    <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</span>
+                                    <p><strong class="text-white">Para que serve:</strong> ${tool.useCase}</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</span>
+                                    <p><strong class="text-white">Como começar:</strong> ${tool.howToStart}</p>
+                                </div>
+                            </div>
+                            <a href="${tool.link}" target="_blank" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-transform duration-200 hover:scale-105 w-full text-center sm:w-auto">
+                                Experimentar a Ferramenta &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // Função para mostrar a ferramenta do dia
+        function displayToolOfTheDay() {
+            if (toolOfTheDay) {
+                renderTool(toolOfTheDay, true);
+            } else {
+                toolContainer.innerHTML = `
+                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 text-center">
+                    <h2 class="text-2xl font-bold text-white">Nenhuma ferramenta agendada para hoje.</h2>
+                    <p class="text-gray-400">Volte amanhã para descobrir mais uma incrível ferramenta de IA!</p>
+                </div>`;
+            }
+        }
+
+        // Função para mostrar uma ferramenta do arquivo
+        function displayArchivedTool(publishDate) {
+            const tool = toolsDatabase.find(t => t.publishDate === publishDate);
+            if (tool) {
+                renderTool(tool, false);
+            }
+        }
+
+        window.onload = function() {
+            // Para fins de demonstração, fixamos a data em 21 de Setembro de 2025
+            const today = new Date('2025-09-21T12:00:00Z');
+            const todayString = today.toISOString().split('T')[0];
+
+            toolOfTheDay = toolsDatabase.find(tool => tool.publishDate === todayString);
+            const archiveTools = toolsDatabase
+                .filter(tool => tool.publishDate < todayString)
+                .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+
+            // Mostra a ferramenta do dia ao carregar a página
+            displayToolOfTheDay();
+
+            // Renderiza o arquivo
+            archiveGrid.innerHTML = '';
             archiveTools.forEach(tool => {
                 const archiveItem = `
-                    <a href="#" onclick="alert('Funcionalidade de página individual a ser implementada')" class="block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 border border-gray-700 transition duration-200">
+                    <div onclick="displayArchivedTool('${tool.publishDate}')" class="cursor-pointer block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 border border-gray-700 transition duration-200">
                         <img src="${tool.logoUrl}" alt="Logo ${tool.name}" class="w-16 h-16 rounded-md mb-3">
                         <h4 class="font-bold text-white">${tool.name}</h4>
                         <p class="text-sm text-gray-400">${tool.description.substring(0, 30)}...</p>
-                    </a>`;
+                    </div>`;
                 archiveGrid.innerHTML += archiveItem;
             });
-
-            // Adiciona o bloco de publicidade ao arquivo a cada 3 itens
-            if(archiveTools.length > 2) {
-                 const adBlock = `<div class="ad-placeholder h-full min-h-[170px]">Publicidade (Retângulo)</div>`;
-                 // Insere o anúncio na 4ª posição (índice 3)
-                 const adPosition = 3;
-                 if (archiveGrid.children[adPosition]) {
-                    archiveGrid.children[adPosition].insertAdjacentHTML('afterend', adBlock);
-                 } else {
-                    archiveGrid.innerHTML += adBlock;
-                 }
-            }
         };
     </script>
 </body>
 </html>
-
-
-
