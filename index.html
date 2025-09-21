@@ -31,6 +31,10 @@
             border-radius: 0.5rem;
             background-color: #1f2937;
         }
+        /* Oculta o botão de limpar do input de pesquisa no Chrome/Safari */
+        input[type="search"]::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
@@ -56,7 +60,17 @@
 
         <!-- Arquivo de Ferramentas Anteriores (Será preenchido por JavaScript) -->
         <section id="archive">
-            <h3 class="text-2xl font-bold text-center mb-8">Ferramentas Anteriores</h3>
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+                <h3 class="text-2xl font-bold text-center sm:text-left">Ferramentas Anteriores</h3>
+                <div class="relative w-full sm:w-auto">
+                    <input type="search" id="search-bar" onkeyup="searchTools()" placeholder="Pesquisar ferramentas..." class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-2.5" />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
             <div id="archive-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Os itens de arquivo serão inseridos aqui -->
             </div>
@@ -64,6 +78,14 @@
 
         <!-- Footer -->
         <footer class="text-center text-gray-500 text-sm border-t border-gray-800 pt-8 mt-12">
+             <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 114.75 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.82 0-1.12.56-1.12 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.38.93 3.38 4.43z"/></svg>
+                </a>
+            </div>
             <p>&copy; 2025 O Decodificador de IA. Todos os direitos reservados.</p>
             <p>Simplificando o futuro, um dia de cada vez.</p>
         </footer>
@@ -187,6 +209,24 @@
             }
         }
 
+        // Função para pesquisar no arquivo
+        function searchTools() {
+            let input = document.getElementById('search-bar');
+            let filter = input.value.toUpperCase();
+            let grid = document.getElementById('archive-grid');
+            let tools = grid.getElementsByClassName('archive-item');
+
+            for (let i = 0; i < tools.length; i++) {
+                let h4 = tools[i].getElementsByTagName("h4")[0];
+                let txtValue = h4.textContent || h4.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tools[i].style.display = "";
+                } else {
+                    tools[i].style.display = "none";
+                }
+            }
+        }
+
         window.onload = function() {
             // Para fins de demonstração, fixamos a data em 21 de Setembro de 2025
             const today = new Date('2025-09-21T12:00:00Z');
@@ -204,7 +244,7 @@
             archiveGrid.innerHTML = '';
             archiveTools.forEach(tool => {
                 const archiveItem = `
-                    <div onclick="displayArchivedTool('${tool.publishDate}')" class="cursor-pointer block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 border border-gray-700 transition duration-200">
+                    <div onclick="displayArchivedTool('${tool.publishDate}')" class="archive-item cursor-pointer block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 border border-gray-700 transition duration-200">
                         <img src="${tool.logoUrl}" alt="Logo ${tool.name}" class="w-16 h-16 rounded-md mb-3">
                         <h4 class="font-bold text-white">${tool.name}</h4>
                         <p class="text-sm text-gray-400">${tool.description.substring(0, 30)}...</p>
@@ -215,3 +255,4 @@
     </script>
 </body>
 </html>
+
