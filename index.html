@@ -1,318 +1,314 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Decodificador de IA - A Sua Ferramenta Diária de IA</title>
-    <meta name="description" content="Descubra uma nova ferramenta de Inteligência Artificial todos os dias. Simplificamos a IA para que possa usá-la hoje mesmo para aumentar a sua produtividade e criatividade.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .gradient-text {
-            background: -webkit-linear-gradient(45deg, #34d399, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .ad-placeholder {
-            border: 2px dashed #374151;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-            color: #6b7280;
-            border-radius: 0.5rem;
-            background-color: #1f2937;
-        }
-        /* Oculta o botão de limpar do input de pesquisa no Chrome/Safari */
-        input[type="search"]::-webkit-search-cancel-button {
-            -webkit-appearance: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Decodificador de IA - A Sua Ferramenta Diária de IA</title>
+  <meta name="description" content="Descubra uma nova ferramenta de Inteligência Artificial todos os dias. Simplificamos a IA para que possa usá-la hoje mesmo para aumentar a sua produtividade e criatividade.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: -webkit-linear-gradient(45deg, #34d399, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .ad-placeholder {
+      border: 2px dashed #374151;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.875rem; color: #6b7280;
+      border-radius: 0.5rem; background-color: #1f2937;
+    }
+    input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; }
+    .active-archive {
+      border: 2px solid #34d399 !important;
+      background-color: #1f2937 !important;
+    }
+  </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
 
-    <!-- Corpo Principal -->
-    <div class="container mx-auto px-4 py-8 md:py-16 max-w-4xl">
+  <!-- Container Principal -->
+  <div class="container mx-auto px-4 py-8 md:py-16 max-w-6xl">
 
-        <!-- Cabeçalho -->
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-2">O Decodificador de <span class="gradient-text">IA</span></h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">A sua dose diária de superpoderes de IA, explicada em menos de 60 segundos.</p>
-        </header>
+    <!-- Cabeçalho -->
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-6xl font-black tracking-tighter mb-2">
+        O Decodificador de <span class="gradient-text">IA</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+        A sua dose diária de superpoderes de IA, explicada em menos de 60 segundos.
+      </p>
+    </header>
 
-        <!-- Ferramenta em Destaque (Será preenchida por JavaScript) -->
-        <main id="tool-display-container">
-            <!-- O conteúdo da ferramenta selecionada será inserido aqui -->
-        </main>
-        
-        <!-- ESPAÇO PARA PUBLICIDADE 1 (Banner Principal) -->
-        <div class="ad-placeholder my-12 h-24 w-full max-w-[728px] mx-auto">
-            Espaço para Publicidade (728x90)
-        </div>
+    <!-- Layout em Grid: Ferramenta + Lateral -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        <!-- Arquivo de Ferramentas Anteriores (Será preenchido por JavaScript) -->
-        <section id="archive">
-            <div class="flex flex-col justify-center items-center mb-8 gap-4 text-center">
-    <h3 class="text-2xl font-bold">Ferramentas Anteriores</h3>
-    <div class="relative w-full max-w-md">
-        <input type="search" id="search-bar" onkeyup="searchTools()" 
+      <!-- Coluna Principal -->
+      <main id="tool-display-container" class="lg:col-span-2"></main>
+
+      <!-- Coluna Lateral -->
+      <aside class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+        <h3 class="text-xl font-bold mb-4 text-center">Ferramentas Anteriores</h3>
+
+        <!-- Caixa de Pesquisa -->
+        <div class="relative mb-6">
+          <input type="search" id="search-bar" onkeyup="searchTools()" 
             placeholder="Pesquisar ferramentas..." 
-            class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-2.5" />
-        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            class="bg-gray-900 border border-gray-700 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-2.5" />
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
+          </div>
         </div>
-    </div>
-</div>
-            <div id="archive-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Os itens de arquivo serão inseridos aqui -->
-            </div>
-        </section>
 
-        <!-- Footer -->
-        <footer class="text-center text-gray-500 text-sm border-t border-gray-800 pt-8 mt-12">
-             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </a>
-                <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 114.75 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.82 0-1.12.56-1.12 1.93V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.38.93 3.38 4.43z"/></svg>
-                </a>
-            </div>
-            <p>&copy; 2025 O Decodificador de IA. Todos os direitos reservados.</p>
-            <p>Simplificando o futuro, um dia de cada vez.</p>
-        </footer>
+        <!-- Lista de Arquivo -->
+        <div id="archive-grid" class="space-y-4"></div>
+
+        <!-- Paginação -->
+        <div id="pagination" class="flex justify-center mt-6 space-x-2"></div>
+      </aside>
     </div>
 
-    <script>
-        // --- O CÉREBRO DE CONTEÚDO ---
-        const toolsDatabase = [
-            {
-                publishDate: '2025-09-18',
-                name: 'Tome.app',
-                description: 'Cria storytelling e narrativas visuais interativas com IA.',
-                useCase: 'Para quem quer ir além de slides e criar apresentações que contam uma história.',
-                howToStart: 'Descreva a sua ideia e a IA constrói uma narrativa com texto e imagens geradas automaticamente.',
-                link: 'https://tome.app/',
-                logoUrl: 'https://placehold.co/120x120/101827/c084fc?text=Tome'
-            },
-            {
-                publishDate: '2025-09-19',
-                name: 'Gamma AI',
-                description: 'Cria apresentações de slides profissionais em segundos a partir de um simples comando de texto.',
-                useCase: 'Ideal para estudantes, marketers e profissionais que precisam de criar apresentações rapidamente.',
-                howToStart: 'Registe-se, escreva o tema da sua apresentação e a IA gera todo o conteúdo e design.',
-                link: 'https://gamma.app/',
-                logoUrl: 'https://placehold.co/120x120/101827/34d399?text=Gamma'
-            },
-            {
-                publishDate: '2025-09-20',
-                name: 'Veed.io',
-                description: 'Um editor de vídeo online completo que usa IA para legendar, remover fundo e muito mais.',
-                useCase: 'Perfeito para criadores de conteúdo, gestores de redes sociais e equipas de marketing.',
-                howToStart: 'Faça o upload do seu vídeo e use as ferramentas de IA com um clique para editar como um profissional.',
-                link: 'https://www.veed.io/',
-                logoUrl: 'https://placehold.co/120x120/101827/60a5fa?text=Veed'
-            },
-            {
-                publishDate: '2025-09-21', // Data de "hoje" para este exemplo
-                name: 'Google Gemini',
-                description: 'Um assistente de IA multimodal e conversacional da Google, capaz de entender texto, imagens, áudio e código.',
-                useCase: 'Perfeito para pesquisa, brainstorming, criação de conteúdo, resumo de informações e ajuda com programação.',
-                howToStart: 'Aceda ao site, inicie uma conversa com o seu pedido (prompt) e explore as suas capacidades multimodais.',
-                link: 'https://gemini.google.com/',
-                logoUrl: 'https://placehold.co/120x120/101827/4285F4?text=Gemini'
-            },
-            {
-        publishDate: '2025-09-15',
-        name: 'ChatGPT',
-        description: 'Um modelo de linguagem avançado desenvolvido pela OpenAI, projetado para conversas, explicações, programação e criação de conteúdo.',
-        useCase: 'Ideal para assistência educacional, suporte ao cliente, desenvolvimento de software, brainstorming e escrita criativa.',
-        howToStart: 'Acesse o site da OpenAI ou utilize via plataformas integradas e inicie uma conversa com o seu prompt.',
-        link: 'https://chat.openai.com/',
-        logoUrl: 'https://placehold.co/120x120/101827/10A37F?text=ChatGPT'
-    },
-    {
-        publishDate: '2025-09-14',
-        name: 'Claude',
-        description: 'Assistente de IA conversacional desenvolvido pela Anthropic, com foco em segurança, interpretação de texto e análise de dados.',
-        useCase: 'Excelente para redação, análise de documentos, geração de ideias e respostas detalhadas em linguagem natural.',
-        howToStart: 'Visite a plataforma da Anthropic ou parceiros que disponibilizam o Claude, e inicie a interação.',
-        link: 'https://claude.ai/',
-        logoUrl: 'https://placehold.co/120x120/101827/7C3AED?text=Claude'
-    },
-    {
-        publishDate: '2025-09-13',
-        name: 'Perplexity AI',
-        description: 'Uma IA de busca e resposta em tempo real que combina informação atualizada da web com explicações claras e contextualizadas.',
-        useCase: 'Perfeito para pesquisa rápida, verificações factuais, exploração de temas complexos e acesso a fontes confiáveis.',
-        howToStart: 'Entre no site oficial, faça a sua pergunta em linguagem natural e explore as respostas com referências.',
-        link: 'https://www.perplexity.ai/',
-        logoUrl: 'https://placehold.co/120x120/101827/059669?text=Perplexity'
-    },
-    {
-        publishDate: '2025-09-12',
-        name: 'Microsoft Copilot',
-        description: 'Um copiloto de produtividade baseado em IA integrado no Microsoft 365, que auxilia em tarefas de escrita, análise de dados e automação.',
-        useCase: 'Indicado para empresas e profissionais que utilizam Word, Excel, PowerPoint e Outlook para aumentar a produtividade.',
-        howToStart: 'Aceda ao Microsoft 365 com conta válida e explore as funcionalidades do Copilot nas aplicações suportadas.',
-        link: 'https://copilot.microsoft.com/',
-        logoUrl: 'https://placehold.co/120x120/101827/2563EB?text=Copilot'
-    },
-    {
-        publishDate: '2025-09-11',
-        name: 'Meta AI',
-        description: 'Assistente de inteligência artificial da Meta integrado ao Facebook, WhatsApp e Instagram, com foco em interações sociais e utilitárias.',
-        useCase: 'Bom para gerar imagens, responder a perguntas rápidas, auxiliar em interações sociais e automações nas redes Meta.',
-        howToStart: 'Utilize dentro do Messenger, WhatsApp ou Instagram, buscando por Meta AI e iniciando uma conversa.',
-        link: 'https://ai.meta.com/',
-        logoUrl: 'https://placehold.co/120x120/101827/9333EA?text=MetaAI'
+    <!-- Espaço para Publicidade -->
+    <div class="ad-placeholder my-12 h-24 w-full max-w-[728px] mx-auto">
+      Espaço para Publicidade (728x90)
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 text-sm border-t border-gray-800 pt-8 mt-12">
+      <div class="flex justify-center space-x-6 mb-4">
+        <!-- LinkedIn -->
+        <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zM17.083 19.77h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H8v-3h2.4V9.5c0-2.4 1.4-3.7 3.6-3.7 1 0 2 .2 2 .2v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12H16l-.5 3h-2.6v7A10 10 0 0 0 22 12"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" target="_blank" class="text-gray-500 hover:text-emerald-400 transition-colors">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.2s-.2-1.7-.9-2.4c-.8-.9-1.6-.9-2-1C17.3 2.5 12 2.5 12 2.5h0s-5.3 0-8.6.3c-.4 0-1.2.1-2 .9-.7.7-.9 2.4-.9 2.4S0 8.3 0 10.5v3c0 2.2.2 4.3.2 4.3s.2 1.7.9 2.4c.8.9 1.9.9 2.4 1 1.7.2 7.5.3 7.5.3s5.3 0 8.6-.3c.4 0 1.2-.1 2-.9.7-.7.9-2.4.9-2.4s.2-2.1.2-4.3v-3c0-2.2-.2-4.3-.2-4.3zM9.5 15.6V8.9l6.4 3.4-6.4 3.3z"/></svg>
+        </a>
+      </div>
+      <p>&copy; 2025 O Decodificador de IA. Todos os direitos reservados.</p>
+      <p>Simplificando o futuro, um dia de cada vez.</p>
+	  <div class="mt-2 space-x-4">
+    <a href="politica-de-privacidade.html" class="hover:text-emerald-400">Política de Privacidade</a>
+    <span>|</span>
+    <a href="termos-de-uso.html" class="hover:text-emerald-400">Termos de Uso</a>
+  </div>
+    </footer>
+  </div>
+
+  <script>
+    // --- Base de Dados ---
+    const toolsDatabase = [
+      { publishDate: '2025-09-18', name: 'Tome.app', description: 'Cria storytelling e narrativas visuais interativas com IA.', useCase: 'Para quem quer ir além de slides e criar apresentações que contam uma história.', howToStart: 'Descreva a sua ideia e a IA constrói uma narrativa com texto e imagens geradas automaticamente.', link: 'https://tome.app/', logoUrl: 'https://placehold.co/120x120/101827/c084fc?text=Tome' },
+      { publishDate: '2025-09-19', name: 'Gamma AI', description: 'Cria apresentações de slides profissionais em segundos a partir de um simples comando de texto.', useCase: 'Ideal para estudantes, marketers e profissionais que precisam de criar apresentações rapidamente.', howToStart: 'Registe-se, escreva o tema da sua apresentação e a IA gera todo o conteúdo e design.', link: 'https://gamma.app/', logoUrl: 'https://placehold.co/120x120/101827/34d399?text=Gamma' },
+      { publishDate: '2025-09-20', name: 'Veed.io', description: 'Um editor de vídeo online completo que usa IA para legendar, remover fundo e muito mais.', useCase: 'Perfeito para criadores de conteúdo, gestores de redes sociais e equipas de marketing.', howToStart: 'Faça o upload do seu vídeo e use as ferramentas de IA com um clique para editar como um profissional.', link: 'https://www.veed.io/', logoUrl: 'https://placehold.co/120x120/101827/60a5fa?text=Veed' },
+      { publishDate: '2025-09-21', name: 'Google Gemini', description: 'Um assistente de IA multimodal e conversacional da Google, capaz de entender texto, imagens, áudio e código.', useCase: 'Perfeito para pesquisa, brainstorming, criação de conteúdo, resumo de informações e ajuda com programação.', howToStart: 'Aceda ao site, inicie uma conversa com o seu pedido (prompt) e explore as suas capacidades multimodais.', link: 'https://gemini.google.com/', logoUrl: 'https://placehold.co/120x120/101827/4285F4?text=Gemini' },
+      { publishDate: '2025-09-15', name: 'ChatGPT', description: 'Um modelo de linguagem avançado desenvolvido pela OpenAI, projetado para conversas, explicações, programação e criação de conteúdo.', useCase: 'Ideal para assistência educacional, suporte ao cliente, desenvolvimento de software, brainstorming e escrita criativa.', howToStart: 'Acesse o site da OpenAI ou utilize via plataformas integradas e inicie uma conversa com o seu prompt.', link: 'https://chat.openai.com/', logoUrl: 'https://placehold.co/120x120/101827/10A37F?text=ChatGPT' },
+      { publishDate: '2025-09-14', name: 'Claude', description: 'Assistente de IA conversacional desenvolvido pela Anthropic, com foco em segurança, interpretação de texto e análise de dados.', useCase: 'Excelente para redação, análise de documentos, geração de ideias e respostas detalhadas em linguagem natural.', howToStart: 'Visite a plataforma da Anthropic ou parceiros que disponibilizam o Claude, e inicie a interação.', link: 'https://claude.ai/', logoUrl: 'https://placehold.co/120x120/101827/7C3AED?text=Claude' },
+      { publishDate: '2025-09-13', name: 'Perplexity AI', description: 'Uma IA de busca e resposta em tempo real que combina informação atualizada da web com explicações claras e contextualizadas.', useCase: 'Perfeito para pesquisa rápida, verificações factuais, exploração de temas complexos e acesso a fontes confiáveis.', howToStart: 'Entre no site oficial, faça a sua pergunta em linguagem natural e explore as respostas com referências.', link: 'https://www.perplexity.ai/', logoUrl: 'https://placehold.co/120x120/101827/059669?text=Perplexity' },
+      { publishDate: '2025-09-12', name: 'Microsoft Copilot', description: 'Um copiloto de produtividade baseado em IA integrado no Microsoft 365, que auxilia em tarefas de escrita, análise de dados e automação.', useCase: 'Indicado para empresas e profissionais que utilizam Word, Excel, PowerPoint e Outlook para aumentar a produtividade.', howToStart: 'Aceda ao Microsoft 365 com conta válida e explore as funcionalidades do Copilot nas aplicações suportadas.', link: 'https://copilot.microsoft.com/', logoUrl: 'https://placehold.co/120x120/101827/2563EB?text=Copilot' },
+      { publishDate: '2025-09-11', name: 'Meta AI', description: 'Assistente de inteligência artificial da Meta integrado ao Facebook, WhatsApp e Instagram, com foco em interações sociais e utilitárias.', useCase: 'Bom para gerar imagens, responder a perguntas rápidas, auxiliar em interações sociais e automações nas redes Meta.', howToStart: 'Utilize dentro do Messenger, WhatsApp ou Instagram, buscando por Meta AI e iniciando uma conversa.', link: 'https://ai.meta.com/', logoUrl: 'https://placehold.co/120x120/101827/9333EA?text=MetaAI' }
+    ];
+
+    let toolOfTheDay = null;
+    let currentPage = 1;
+    const itemsPerPage = 3; 
+    let archiveTools = [];
+    let activeToolDate = null;
+
+    const toolContainer = document.getElementById('tool-display-container');
+    const archiveGrid = document.getElementById('archive-grid');
+    const pagination = document.getElementById('pagination');
+
+    // Renderizar ferramenta
+    function renderTool(tool, isMainTool) {
+      const date = new Date(tool.publishDate + 'T12:00:00Z');
+      const formattedDate = date.toLocaleDateString('pt-pt', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      let headerContent = '';
+      if (isMainTool) {
+        headerContent = `
+          <div class="flex items-center mb-4">
+            <span class="bg-emerald-500 text-gray-900 text-xs font-bold mr-3 px-3 py-1 rounded-full uppercase">Ferramenta do Dia</span>
+            <span class="text-sm text-gray-500">${formattedDate}</span>
+          </div>`;
+      } else {
+        headerContent = `
+          <div class="mb-4">
+            <button onclick="displayToolOfTheDay(true)" class="text-emerald-400 hover:text-emerald-300 font-semibold">&larr; Voltar à Ferramenta do Dia</button>
+          </div>`;
+      }
+
+      toolContainer.innerHTML = `
+        <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-700">
+          ${headerContent}
+          <div class="md:flex md:items-center md:space-x-8">
+            <div class="flex-shrink-0 mb-6 md:mb-0">
+              <img src="${tool.logoUrl}" alt="Logo da ${tool.name}" class="rounded-lg w-24 h-24 md:w-32 md:h-32 mx-auto">
+            </div>
+            <div>
+              <h2 class="text-3xl font-bold text-white mb-2">${tool.name}</h2>
+              <p class="text-gray-300 mb-4">${tool.description}</p>
+              <div class="space-y-3 mb-5">
+                <div class="flex items-start">
+                  <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1">1</span>
+                  <p><strong class="text-white">Para que serve:</strong> ${tool.useCase}</p>
+                </div>
+                <div class="flex items-start">
+                  <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1">2</span>
+                  <p><strong class="text-white">Como começar:</strong> ${tool.howToStart}</p>
+                </div>
+              </div>
+              <a href="${tool.link}" target="_blank" 
+                 class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-transform duration-200 hover:scale-105 w-full text-center sm:w-auto">
+                Experimentar a Ferramenta &rarr;
+              </a>
+            </div>
+          </div>
+        </div>`;
     }
-        ];
-        
-        // --- O MOTOR DE AUTOMAÇÃO ---
-        let toolOfTheDay = null;
-        const toolContainer = document.getElementById('tool-display-container');
-        const archiveGrid = document.getElementById('archive-grid');
 
-        // Função para renderizar os detalhes de uma ferramenta no container principal
-        function renderTool(tool, isMainTool) {
-            const date = new Date(tool.publishDate + 'T12:00:00Z');
-            const formattedDate = date.toLocaleDateString('pt-pt', { day: 'numeric', month: 'long', year: 'numeric' });
-            
-            let headerContent = '';
-            if (isMainTool) {
-                headerContent = `
-                    <div class="flex items-center mb-4">
-                        <span class="bg-emerald-500 text-gray-900 text-xs font-bold mr-3 px-3 py-1 rounded-full uppercase">Ferramenta do Dia</span>
-                        <span class="text-sm text-gray-500">${formattedDate}</span>
-                    </div>`;
-            } else {
-                headerContent = `
-                    <div class="mb-4">
-                        <button onclick="displayToolOfTheDay(true)" class="text-emerald-400 hover:text-emerald-300 font-semibold">&larr; Voltar à Ferramenta do Dia</button>
-                    </div>`;
-            }
-
-            toolContainer.innerHTML = `
-                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-700">
-                    ${headerContent}
-                    <div class="md:flex md:items-center md:space-x-8">
-                        <div class="flex-shrink-0 mb-6 md:mb-0">
-                            <img src="${tool.logoUrl}" alt="Logo da ${tool.name}" class="rounded-lg w-24 h-24 md:w-32 md:h-32 mx-auto">
-                        </div>
-                        <div>
-                            <h2 class="text-3xl font-bold text-white mb-2">${tool.name}</h2>
-                            <p class="text-gray-300 mb-4">${tool.description}</p>
-                            <div class="space-y-3 mb-5">
-                                <div class="flex items-start">
-                                    <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</span>
-                                    <p><strong class="text-white">Para que serve:</strong> ${tool.useCase}</p>
-                                </div>
-                                <div class="flex items-start">
-                                    <span class="bg-gray-700 text-emerald-400 rounded-full h-6 w-6 text-xs font-bold flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</span>
-                                    <p><strong class="text-white">Como começar:</strong> ${tool.howToStart}</p>
-                                </div>
-                            </div>
-                            <a href="${tool.link}" target="_blank" class="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-lg transition-transform duration-200 hover:scale-105 w-full text-center sm:w-auto">
-                                Experimentar a Ferramenta &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
-        }
-
-        // Função para mostrar a ferramenta do dia
-        function displayToolOfTheDay(shouldScroll = false) {
-            if (toolOfTheDay) {
-                renderTool(toolOfTheDay, true);
-                if(shouldScroll) {
-                    toolContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            } else {
-                toolContainer.innerHTML = `
-                <div class="bg-gray-800 rounded-2xl p-6 md:p-8 text-center">
-                    <h2 class="text-2xl font-bold text-white">Nenhuma ferramenta agendada para hoje.</h2>
-                    <p class="text-gray-400">Volte amanhã para descobrir mais uma incrível ferramenta de IA!</p>
-                </div>`;
-            }
-        }
-
-        // Função para mostrar uma ferramenta do arquivo
-        function displayArchivedTool(publishDate) {
-            const tool = toolsDatabase.find(t => t.publishDate === publishDate);
-            if (tool) {
-                renderTool(tool, false);
-                toolContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        // Função para pesquisar no arquivo
-        // Função para pesquisar no arquivo (nome + descrição)
-function searchTools() {
-    let input = document.getElementById('search-bar');
-    let filter = input.value.toUpperCase();
-    let grid = document.getElementById('archive-grid');
-    let tools = grid.getElementsByClassName('archive-item');
-
-    for (let i = 0; i < tools.length; i++) {
-        let h4 = tools[i].getElementsByTagName("h4")[0];
-        let p = tools[i].getElementsByTagName("p")[0];
-        let txtValueH4 = h4.textContent || h4.innerText;
-        let txtValueP = p.textContent || p.innerText;
-
-        if (
-            txtValueH4.toUpperCase().indexOf(filter) > -1 ||
-            txtValueP.toUpperCase().indexOf(filter) > -1
-        ) {
-            tools[i].style.display = "";
-        } else {
-            tools[i].style.display = "none";
-        }
+    // Mostrar ferramenta do dia
+    function displayToolOfTheDay(shouldScroll = false) {
+      activeToolDate = toolOfTheDay ? toolOfTheDay.publishDate : null;
+      if (toolOfTheDay) {
+        renderTool(toolOfTheDay, true);
+        highlightActiveTool();
+        if (shouldScroll) toolContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        toolContainer.innerHTML = `
+          <div class="bg-gray-800 rounded-2xl p-6 md:p-8 text-center">
+            <h2 class="text-2xl font-bold text-white">Nenhuma ferramenta agendada para hoje.</h2>
+            <p class="text-gray-400">Volte amanhã para descobrir mais uma incrível ferramenta de IA!</p>
+          </div>`;
+      }
     }
-}
 
-        window.onload = function() {
-            // Para fins de demonstração, fixamos a data em 21 de Setembro de 2025
-            const today = new Date('2025-09-21T12:00:00Z');
-            const todayString = today.toISOString().split('T')[0];
+    // Mostrar ferramenta arquivada
+    function displayArchivedTool(publishDate) {
+      const tool = toolsDatabase.find(t => t.publishDate === publishDate);
+      if (tool) {
+        activeToolDate = publishDate;
+        renderTool(tool, false);
+        highlightActiveTool();
+        toolContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
 
-            toolOfTheDay = toolsDatabase.find(tool => tool.publishDate === todayString);
-            const archiveTools = toolsDatabase
-                .filter(tool => tool.publishDate < todayString)
-                .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+    // Destacar ferramenta ativa na lateral
+    function highlightActiveTool() {
+      document.querySelectorAll('.archive-item').forEach(el => {
+        el.classList.remove('active-archive');
+        if (el.dataset.date === activeToolDate) {
+          el.classList.add('active-archive');
+        }
+      });
+    }
 
-            // Mostra a ferramenta do dia ao carregar a página
-            displayToolOfTheDay();
+    // Renderizar página de ferramentas arquivadas
+    function renderArchivePage(page, data = archiveTools) {
+      archiveGrid.innerHTML = '';
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageItems = data.slice(start, end);
 
-            // Renderiza o arquivo
-            archiveGrid.innerHTML = '';
-            archiveTools.forEach(tool => {
-                const archiveItem = `
-                    <div onclick="displayArchivedTool('${tool.publishDate}')" class="archive-item cursor-pointer block bg-gray-800 p-4 rounded-lg hover:bg-gray-700 border border-gray-700 transition duration-200">
-                        <img src="${tool.logoUrl}" alt="Logo ${tool.name}" class="w-16 h-16 rounded-md mb-3">
-                        <h4 class="font-bold text-white">${tool.name}</h4>
-                        <p class="text-sm text-gray-400">${tool.description.substring(0, 30)}...</p>
-                    </div>`;
-                archiveGrid.innerHTML += archiveItem;
-            });
-        };
-    </script>
+      pageItems.forEach(tool => {
+        const archiveItem = `
+          <div onclick="displayArchivedTool('${tool.publishDate}')" 
+              data-date="${tool.publishDate}"
+              class="archive-item cursor-pointer flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-700 border border-gray-700 transition duration-200">
+            <img src="${tool.logoUrl}" alt="Logo ${tool.name}" class="w-12 h-12 rounded-md">
+            <div>
+              <h4 class="font-bold text-white text-sm">${tool.name}</h4>
+              <p class="text-xs text-gray-400">${tool.description.substring(0, 40)}...</p>
+            </div>
+          </div>`;
+        archiveGrid.innerHTML += archiveItem;
+      });
+
+      highlightActiveTool();
+
+      if (document.getElementById('search-bar').value.trim() === "") {
+        renderPagination(data);
+      } else {
+        pagination.innerHTML = "";
+      }
+    }
+
+    // Renderizar botões de paginação
+    function renderPagination(data = archiveTools) {
+      const totalPages = Math.ceil(data.length / itemsPerPage);
+      pagination.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.innerHTML += `
+          <button onclick="changePage(${i})"
+              class="px-3 py-1 rounded-lg border ${i === currentPage ? 'bg-emerald-500 text-white border-emerald-500' : 'bg-gray-800 text-gray-300 border-gray-700 hover:bg-gray-700'}">
+            ${i}
+          </button>`;
+      }
+    }
+
+    // Trocar página
+    function changePage(page) {
+      currentPage = page;
+      renderArchivePage(page);
+    }
+
+    // Pesquisa no arquivo
+    function searchTools() {
+      let input = document.getElementById('search-bar').value.toUpperCase().trim();
+
+      if (input === "") {
+        currentPage = 1;
+        renderArchivePage(currentPage, archiveTools);
+        return;
+      }
+
+      let filtered = archiveTools.filter(tool =>
+        tool.name.toUpperCase().includes(input) ||
+        tool.description.toUpperCase().includes(input) ||
+        tool.useCase.toUpperCase().includes(input)
+      );
+
+      if (filtered.length === 0) {
+        archiveGrid.innerHTML = `
+          <div class="text-center text-gray-400 text-sm p-4">
+            Nenhuma ferramenta encontrada para "<span class="text-white">${input}</span>".
+          </div>`;
+        pagination.innerHTML = "";
+        return;
+      }
+
+      renderArchivePage(1, filtered);
+      pagination.innerHTML = "";
+    }
+
+    // Carregar página
+    window.onload = function() {
+      const today = new Date('2025-09-21T12:00:00Z');
+      const todayString = today.toISOString().split('T')[0];
+
+      toolOfTheDay = toolsDatabase.find(tool => tool.publishDate === todayString);
+      archiveTools = toolsDatabase
+        .filter(tool => tool.publishDate < todayString)
+        .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+
+      displayToolOfTheDay();
+      renderArchivePage(currentPage);
+    };
+  </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
