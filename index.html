@@ -211,22 +211,29 @@
         }
 
         // Função para pesquisar no arquivo
-        function searchTools() {
-            let input = document.getElementById('search-bar');
-            let filter = input.value.toUpperCase();
-            let grid = document.getElementById('archive-grid');
-            let tools = grid.getElementsByClassName('archive-item');
+        // Função para pesquisar no arquivo (nome + descrição)
+function searchTools() {
+    let input = document.getElementById('search-bar');
+    let filter = input.value.toUpperCase();
+    let grid = document.getElementById('archive-grid');
+    let tools = grid.getElementsByClassName('archive-item');
 
-            for (let i = 0; i < tools.length; i++) {
-                let h4 = tools[i].getElementsByTagName("h4")[0];
-                let txtValue = h4.textContent || h4.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tools[i].style.display = "";
-                } else {
-                    tools[i].style.display = "none";
-                }
-            }
+    for (let i = 0; i < tools.length; i++) {
+        let h4 = tools[i].getElementsByTagName("h4")[0];
+        let p = tools[i].getElementsByTagName("p")[0];
+        let txtValueH4 = h4.textContent || h4.innerText;
+        let txtValueP = p.textContent || p.innerText;
+
+        if (
+            txtValueH4.toUpperCase().indexOf(filter) > -1 ||
+            txtValueP.toUpperCase().indexOf(filter) > -1
+        ) {
+            tools[i].style.display = "";
+        } else {
+            tools[i].style.display = "none";
         }
+    }
+}
 
         window.onload = function() {
             // Para fins de demonstração, fixamos a data em 21 de Setembro de 2025
@@ -256,6 +263,7 @@
     </script>
 </body>
 </html>
+
 
 
 
