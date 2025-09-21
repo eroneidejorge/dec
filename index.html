@@ -60,18 +60,19 @@
 
         <!-- Arquivo de Ferramentas Anteriores (Será preenchido por JavaScript) -->
         <section id="archive">
-            <div class="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-                <h3 class="text-2xl font-bold text-center sm:text-left">Ferramentas Anteriores</h3>
-                <br>
-                <div class="relative w-full sm:w-auto">
-                    <input type="search" id="search-bar" onkeyup="searchTools()" placeholder="Pesquisar ferramentas..." class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-2.5" />
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+            <div class="flex flex-col justify-center items-center mb-8 gap-4 text-center">
+    <h3 class="text-2xl font-bold">Ferramentas Anteriores</h3>
+    <div class="relative w-full max-w-md">
+        <input type="search" id="search-bar" onkeyup="searchTools()" 
+            placeholder="Pesquisar ferramentas..." 
+            class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block w-full pl-10 p-2.5" />
+        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+        </div>
+    </div>
+</div>
             <div id="archive-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <!-- Os itens de arquivo serão inseridos aqui -->
             </div>
@@ -263,6 +264,7 @@ function searchTools() {
     </script>
 </body>
 </html>
+
 
 
 
